@@ -1,0 +1,19 @@
+.kinda-useful-top {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  height: 100px;
+  width: 400px;
+  font-size: 2em;
+  z-index: 999;
+}
+
+.task-list {
+  color: black;
+  background: lightgreen;
+}
+
+.error-alert {
+  color: white;
+  background: darkred;
+}

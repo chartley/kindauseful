@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+
+  "name": "Kinda Useful",
+  "description": "Instead of procrastinating on your favourite site, we'll suggest something kinda useful to do.",
+  "version": "0.1",
+
+  "permissions": [
+    "alarms",
+    "tabs",
+    "webNavigation",
+    "*://*.googleapis.com/",
+    "*://*.google.com/"
+  ],
+
+  "background": {
+    // "js": ["jquery.min.js", "background.js"]
+    "page": "background.html"
+    // "persistent": false,
+    // "scripts": ["background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["jquery.min.js", "contentscript.js"],
+      "css": ["contentscript.css"],
+      "run_at": "document_start"
+    }
+  ]
+}
