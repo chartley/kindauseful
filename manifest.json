@@ -14,8 +14,8 @@
   ],
 
   "background": {
-    "scripts": ["jquery.min.js", "background.js"],
-    "persistent": false     // event page as per https://developer.chrome.com/extensions/event_pages
+    "scripts": ["js/jquery.min.js", "background.js"],
+    "persistent": false
   },
 
   "content_scripts": [
