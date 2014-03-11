@@ -18,14 +18,28 @@ var KindaUsefulContent = {
   },
 
   displayTasks: function() {
+    // get task(s)
     var asanaManager = new AsanaManager()
       , asanaTasks = asanaManager.get('tasks')
       , randomIndex = Math.floor(Math.random()*asanaTasks.length)
       , asanaTask = asanaTasks.at(randomIndex);
-    $('body').prepend('<div class="kinda-useful-top task-list">Task: ' + asanaTask.get('name') + '</div>');
-    $('body .kinda-useful-top').click(function() {
-      $('body .kinda-useful-top').remove();
-    })
+
+    // add modal div and templates to the page
+    $.ajax({
+      url: chrome.extension.getURL("templates/overlay.html"),
+      async: false,
+      success: function(result) {
+        $('body').append($.parseHTML(result));
+      }
+    });
+
+    // render templates
+    var taskTemplate = $("#kinda-useful-task-template").html() || ""
+      , taskTemplateData = {taskName: asanaTask.get('name')};
+    $('.kinda-useful-modal .task-list ul').append(_.template(taskTemplate, taskTemplateData));
+
+    // launch modal
+    $('.kinda-useful-modal').easyModal().trigger('openModal');
   }
 };
 
