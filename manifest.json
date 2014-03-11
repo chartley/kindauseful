@@ -10,7 +10,8 @@
     "tabs",
     "webNavigation",
     "*://*.googleapis.com/",
-    "*://*.google.com/"
+    "*://*.google.com/",
+    "*://*.asana.com/"
   ],
 
   "background": {
@@ -21,7 +22,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*"],
-      "js": ["jquery.min.js", "contentscript.js"],
+      "js": ["js/jquery.min.js", "js/underscore.js", "js/backbone.js", "js/asanatasks.js", "contentscript.js"],
       "css": ["contentscript.css"],
       "run_at": "document_start"
     }
