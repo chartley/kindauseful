@@ -23,6 +23,9 @@ var KindaUsefulContent = {
       , randomIndex = Math.floor(Math.random()*asanaTasks.length)
       , asanaTask = asanaTasks.at(randomIndex);
     $('body').prepend('<div class="kinda-useful-top task-list">Task: ' + asanaTask.get('name') + '</div>');
+    $('body .kinda-useful-top').click(function() {
+      $('body .kinda-useful-top').remove();
+    })
   }
 };
 
