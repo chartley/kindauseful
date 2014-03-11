@@ -1,23 +1,33 @@
-<!--<div class="kinda-useful-top task-list">Task: TASKNAME</div>-->
-
 <div class="kinda-useful-modal">
-    <div>
-        Sure, you could waste time, but why not just do something useful that isn't work?
+    <div class="title">
+        Why not do something useful?
     </div>
 
     <div class="task-list">
         <ul></ul>
     </div>
 
-    <div>
-        <button>Nope</button>
+    <div class="bottom-buttons">
+        <button class="topcoat-button" >Not now</button>
     </div>
 </div>
 
 <script type="text/template" id="kinda-useful-task-template">
     <li class="task-item">
-        <button>Open</button>
-        <button>Done</button>
-        <span class="task-name"><%- taskName %></span>
+        <div class="topcoat-button-bar">
+          <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">Open</button>
+          </div>
+          <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">Done</button>
+          </div>
+          <div class="topcoat-button-bar__item">
+            <button class="topcoat-button-bar__button">Dismiss</button>
+          </div>
+        </div>
+        <div class="task-name">
+            <%- taskName %>
+        </div>
+        <div class="clearfix"></div>
     </li>
 </script>

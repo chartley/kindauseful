@@ -20,11 +20,10 @@ var KindaUsefulContent = {
   displayTasks: function() {
     // get task(s)
     var asanaManager = new AsanaManager()
-      , asanaTasks = asanaManager.get('tasks')
-      , randomIndex = Math.floor(Math.random()*asanaTasks.length)
-      , asanaTask = asanaTasks.at(randomIndex);
+      , allAsanaTasks = asanaManager.get('tasks')
+      , selectedAsanaTasks = allAsanaTasks.slice(0, 2);
 
-    // add modal div and templates to the page
+    // add modal div and templates to the page; update background (can't ref files from css)
     $.ajax({
       url: chrome.extension.getURL("templates/overlay.html"),
       async: false,
@@ -34,9 +33,10 @@ var KindaUsefulContent = {
     });
 
     // render templates
-    var taskTemplate = $("#kinda-useful-task-template").html() || ""
-      , taskTemplateData = {taskName: asanaTask.get('name')};
-    $('.kinda-useful-modal .task-list ul').append(_.template(taskTemplate, taskTemplateData));
+    var taskTemplate = $("#kinda-useful-task-template").html() || "";
+    _.each(selectedAsanaTasks, function(asanaTask) {
+      $('.kinda-useful-modal .task-list ul').append(_.template(taskTemplate, {taskName: asanaTask.get('name')}));
+    });
 
     // launch modal
     $('.kinda-useful-modal').easyModal().trigger('openModal');

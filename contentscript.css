@@ -14,7 +14,39 @@
 }
 
 .kinda-useful-modal {
-  background-color: #e9e9e9;
+  background-image:url('chrome-extension://__MSG_@@extension_id__/img/fabric_plaid.png');
+  border-radius: 5px;
   font-size: 1em;
   padding: 20px;
+}
+
+.kinda-useful-modal .title {
+  margin-bottom: 15px;
+}
+
+.task-list .topcoat-button-bar {
+  float: left;
+}
+
+.task-list .task-item {
+  margin-bottom: 3px;
+}
+
+.task-list .task-name {
+  float: left;
+  min-width: 250px;
+  margin-left: 20px;
+  line-height: 23px;
+}
+
+.kinda-useful-modal .bottom-buttons {
+  margin-top: 7px;
+}
+
+.kinda-useful-modal .bottom-buttons button {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
 }
