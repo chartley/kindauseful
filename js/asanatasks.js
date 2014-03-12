@@ -5,6 +5,17 @@ var AsanaTask = Backbone.Model.extend({
   }
 });
 
+var AsanaTaskView = Backbone.View.extend({
+  tagName: 'li',
+  attributes: { class: 'task-item' },
+
+  render: function() {
+    var template = _.template($("#kinda-useful-task-template").html());
+    this.$el.html(template(this.model.attributes));
+    return this;
+  }
+});
+
 var AsanaUser = Backbone.Model.extend({
   },
   // static

@@ -34,9 +34,9 @@ var KindaUsefulContent = {
     });
 
     // render templates
-    var taskTemplate = $("#kinda-useful-task-template").html() || "";
     _.each(selectedAsanaTasks, function(asanaTask) {
-      $('.kinda-useful-modal .task-list ul').append(_.template(taskTemplate, {taskName: asanaTask.get('name')}));
+      var asanaTaskView = new AsanaTaskView({model: asanaTask});
+      $('.kinda-useful-modal .task-list ul').append(asanaTaskView.render().$el);
     });
 
     // launch modal

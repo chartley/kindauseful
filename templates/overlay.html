@@ -13,21 +13,19 @@
 </div>
 
 <script type="text/template" id="kinda-useful-task-template">
-    <li class="task-item">
-        <div class="topcoat-button-bar">
-          <div class="topcoat-button-bar__item">
-            <button class="topcoat-button-bar__button">Open</button>
-          </div>
-          <div class="topcoat-button-bar__item">
-            <button class="topcoat-button-bar__button">Done</button>
-          </div>
-          <div class="topcoat-button-bar__item">
-            <button class="topcoat-button-bar__button">Dismiss</button>
-          </div>
-        </div>
-        <div class="task-name">
-            <%- taskName %>
-        </div>
-        <div class="clearfix"></div>
-    </li>
+    <div class="topcoat-button-bar">
+      <div class="topcoat-button-bar__item">
+        <button class="topcoat-button-bar__button open">Open</button>
+      </div>
+      <div class="topcoat-button-bar__item">
+        <button class="topcoat-button-bar__button done">Done</button>
+      </div>
+      <div class="topcoat-button-bar__item">
+        <button class="topcoat-button-bar__button dismiss">Dismiss</button>
+      </div>
+    </div>
+    <div class="task-name">
+        <%- name %>
+    </div>
+    <div class="clearfix"></div>
 </script>
