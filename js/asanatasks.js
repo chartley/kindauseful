@@ -160,5 +160,13 @@ var AsanaManager = Backbone.Model.extend({
     } else {
       this.set('tasks', AsanaTaskCollection.createForUserWorkspaces(this.get('user')));
     }
+  },
+
+  // fake init for fast testing
+  fakeInitialize: function() {
+    this.set('tasks', new AsanaTaskCollection([
+      { id: 123, name: 'AsanaManager Stubbed' },
+      { id: 124, name: 'Another Example' }
+    ]));
   }
 });
