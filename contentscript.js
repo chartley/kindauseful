@@ -21,7 +21,8 @@ var KindaUsefulContent = {
     // get task(s)
     var asanaManager = new AsanaManager()
       , allAsanaTasks = asanaManager.get('tasks')
-      , selectedAsanaTasks = allAsanaTasks.slice(0, 2);
+      , shuffledTasks = allAsanaTasks.shuffle()
+      , selectedAsanaTasks = shuffledTasks.slice(0, 3);
 
     // add modal div and templates to the page; update background (can't ref files from css)
     $.ajax({
