@@ -2,17 +2,59 @@ var AsanaTask = Backbone.Model.extend({
   defaults: {
     id: null,
     name: "Undefined"
+  },
+
+  getURL: function(callback) {
+    var taskId = this.get("id");
+    $.ajax({
+      dataType: "json",
+      url: "https://app.asana.com/api/1.0/tasks/" + taskId,
+      async: false,
+      success: function(result) {
+        if (result && result.data) {
+          var project = result.data.projects[0].id
+            , taskURL = "https://app.asana.com/0/" + project + "/" + taskId;
+          callback(taskURL);
+        } else {
+          console.log("AsanaTask.getURL() failed to parse", result);
+          callback(null);
+        }
+      },
+      error: function(result) {
+        console.log("AsanaTask.getURL() error", result);
+        callback(null);
+      }
+    });
   }
 });
 
 var AsanaTaskView = Backbone.View.extend({
   tagName: 'li',
   attributes: { class: 'task-item' },
+  events: {
+    "click button.open:not(.disabled)":      "open",
+    "click button.done:not(.disabled)":      "done",
+    "click button.dismiss:not(.disabled)":   "dismiss"
+  },
 
   render: function() {
     var template = _.template($("#kinda-useful-task-template").html());
     this.$el.html(template(this.model.attributes));
     return this;
+  },
+
+  open: function() {
+    this.model.getURL(function(url) {
+      window.open(url, '_blank').focus();
+    });
+  },
+  done: function() {
+    this.$el.fadeOut();
+    // TODO: persist this to the server
+  },
+  dismiss: function() {
+    // TODO: save to local storage so we don't show this again for 24 hours
+    this.$el.fadeOut();
   }
 });
 
