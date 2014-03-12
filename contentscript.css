@@ -37,6 +37,8 @@
   min-width: 250px;
   margin-left: 20px;
   line-height: 23px;
+  font-size: 1.1em;
+  font-weight: 400;
 }
 
 .kinda-useful-modal .bottom-buttons {

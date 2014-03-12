@@ -27,7 +27,7 @@
     {
       "matches": ["http://*/*"],
       "js": ["js/jquery-1.11.0.min.js", "js/underscore.js", "js/backbone.js", "js/jquery.easyModal.js", "js/asanatasks.js", "contentscript.js"],
-      "css": ["css/topcoat-desktop-light.css", "contentscript.css"],
+      "css": ["css/yui-css-reset-min.css", "css/topcoat-desktop-light.css", "contentscript.css"],
       "run_at": "document_start"
     }
   ]
