@@ -40,6 +40,8 @@ var AsanaTaskCollection = Backbone.Collection.extend({
   },
   // static
   {
+    DEFAULT_PROJECT: null,
+
     createForUserWorkspaces: function(asanaUser) {
       // determine the workspace; by default will take from "Personal Projects" which everyone
       // has as per https://asana.com/guide/learn/workspaces/personal
@@ -61,10 +63,33 @@ var AsanaTaskCollection = Backbone.Collection.extend({
           if (result && result.data) {
             var rawTasks = result.data
               , incompletetasks = _.filter(rawTasks, function(task) { return !(task.completed); });
-              // TODO: sort by assignee_status, etc to prioritize those which are important
             asanaTasks = new AsanaTaskCollection(incompletetasks);
           } else {
-            console.log("getUserData failed", result);
+            console.log("createForUserWorkspaces failed", result);
+          }
+        }
+      });
+      return asanaTasks;
+    },
+
+    createForUserProject: function(asanaUser, projectId) {
+      // query tasks for this user / workspace as per http://developer.asana.com/documentation/#tasks
+      var asanaTasks = null;
+      $.ajax({
+        dataType: "json",
+        url: "https://app.asana.com/api/1.0/tasks",
+        data: {
+          project: projectId,
+          completed_since: "now"          // only return incomplete tasks
+        },
+        async: false,
+        success: function(result) {
+          if (result && result.data) {
+            var rawTasks = result.data
+              , incompletetasks = _.filter(rawTasks, function(task) { return !(task.completed); });
+            asanaTasks = new AsanaTaskCollection(incompletetasks);
+          } else {
+            console.log("createForUserProject failed", result);
           }
         }
       });
@@ -76,6 +101,11 @@ var AsanaTaskCollection = Backbone.Collection.extend({
 var AsanaManager = Backbone.Model.extend({
   initialize: function() {
     this.set('user', AsanaUser.createForCurrentUser());
-    this.set('tasks', AsanaTaskCollection.createForUserWorkspaces(this.get('user')));
+
+    if (AsanaTaskCollection.DEFAULT_PROJECT !== null) {
+      this.set('tasks', AsanaTaskCollection.createForUserProject(this.get('user'), AsanaTaskCollection.DEFAULT_PROJECT));
+    } else {
+      this.set('tasks', AsanaTaskCollection.createForUserWorkspaces(this.get('user')));
+    }
   }
 });

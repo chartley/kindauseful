@@ -32,13 +32,13 @@ var KindaUsefulBackground = {
         tasks: KindaUsefulBackground.tasks,
         triggerUrl: details.url
       };
-      chrome.tabs.sendMessage(details.tabId, tasksData, function(response) {
-
-      });
+      chrome.tabs.sendMessage(details.tabId, tasksData, function(response) {});
     }, { // now filter for URLs to listen on
       url: [
         {hostSuffix: '9gag.com'},
-        {hostSuffix: 'facebook.com'}
+        {hostSuffix: 'quickmeme.com'},
+        {hostSuffix: 'reddit.com'},
+        {hostSuffix: 'craigslist.org'}
       ]
     });
   }
