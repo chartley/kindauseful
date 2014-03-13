@@ -80,6 +80,12 @@ var AsanaUser = Backbone.Model.extend({
           } else {
             console.log("getUserData failed", result);
           }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('AsanaUser.createForCurrentUser() failure', errorThrown);
+          asanaUser = new AsanaUser({
+            error: errorThrown
+          });
         }
       });
 
@@ -155,7 +161,10 @@ var AsanaManager = Backbone.Model.extend({
   initialize: function() {
     this.set('user', AsanaUser.createForCurrentUser());
 
-    if (AsanaTaskCollection.DEFAULT_PROJECT !== null) {
+    if (this.get('user').has('error')) {
+      this.set('error', 'Unable to get user data: ' + this.get('user').get('error'));
+      this.fakeInitialize();
+    } else if (AsanaTaskCollection.DEFAULT_PROJECT !== null) {
       this.set('tasks', AsanaTaskCollection.createForUserProject(this.get('user'), AsanaTaskCollection.DEFAULT_PROJECT));
     } else {
       this.set('tasks', AsanaTaskCollection.createForUserWorkspaces(this.get('user')));
@@ -165,8 +174,9 @@ var AsanaManager = Backbone.Model.extend({
   // fake init for fast testing
   fakeInitialize: function() {
     this.set('tasks', new AsanaTaskCollection([
-      { id: 123, name: 'AsanaManager Stubbed' },
-      { id: 124, name: 'Another Example' }
+      { id: 123, name: 'Example task' },
+      { id: 124, name: 'Order things from Amazon' },
+      { id: 125, name: 'A task that has a really, ridiculously long title' }
     ]));
   }
 });
