@@ -21,3 +21,5 @@ This isn't in the Chrome web store yet, so you need to
 * download a copy of the files in this repo
 * [load the extension in chrome](https://developer.chrome.com/extensions/getstarted#unpacked)
 * visit a time-wasting site, eg 9gag.com
+
+At present it will show incomplete tasks from your Personal Projects workspace in Asana. If you just want to see how it works, sign out of Asana and it will show some example tasks.
