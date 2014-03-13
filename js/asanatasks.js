@@ -174,9 +174,9 @@ var AsanaManager = Backbone.Model.extend({
   // fake init for fast testing
   fakeInitialize: function() {
     this.set('tasks', new AsanaTaskCollection([
-      { id: 123, name: 'Example task' },
-      { id: 124, name: 'Order things from Amazon' },
-      { id: 125, name: 'A task that has a really, ridiculously long title' }
+      { id: 123, name: 'Order birthday flowers for Helen' },
+      { id: 124, name: 'Return call from Butch (Progressive)' },
+      { id: 125, name: 'Book blood donation' }
     ]));
   }
 });
