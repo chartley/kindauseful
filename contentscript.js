@@ -40,7 +40,10 @@ var KindaUsefulContent = {
     });
 
     // launch modal
-    $('.kinda-useful-modal').easyModal().trigger('openModal');
+    $('.kinda-useful-modal').easyModal({
+      autoOpen: true,
+      overlayClose: false
+    });
   }
 };
 
