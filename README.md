@@ -3,7 +3,9 @@ kindauseful
 
 Kinda Useful - hijacking your procrastination for good.
 
-This Chrome Extension looks at the URL as you browse, and if it's a time-wasting site suggests you do one of the tasks you've got on your personal to-do list, giving your brain a rest and also getting something kinda useful done. [screenshot](https://raw.github.com/chartley/kindauseful/master/screenshot.png)
+This Chrome Extension looks at the current URL as you browse, and if it's a time-wasting site suggests you do one of the tasks you've got on your personal to-do list, giving your brain a rest and also getting something kinda useful done.
+
+![screenshot](/screenshot.png "Screenshot")
 
 Background
 ----------
